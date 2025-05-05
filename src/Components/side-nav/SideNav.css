@@ -1,4 +1,8 @@
-.sidenav-gridclass{
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.sidenav-gridclass {
   grid-area: aside;
 }
 .sidenav-container {
@@ -113,16 +117,19 @@
   justify-content: center;
   align-items: center;
 }
-.project-text {
+#project-text{
   /* width: 167px; */
   align-self: stretch;
   color: var(--gray-900, #111827);
   font-family: Nunito;
   font-size: 14px;
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
 }
+.project-text-active {
+  font-weight: 700;
+}
+
 .project-arrow-left {
   display: flex;
   width: 16px;
@@ -143,18 +150,28 @@
   padding: 12px;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+}
+
+.project-child-ongoing-container.active {
   border-left: 2px solid var(--Governor-Bay-600, #3246d2);
   background: var(--Governor-Bay-50, #f1f4fd);
 }
+
 .ongoing-text {
   width: 132px;
   flex-shrink: 0;
-  color: var(--Governor-Bay-600, #3246d2);
+  color: var(--gray-500, #6b7280);
   font-family: Nunito;
   font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
+}
+.ongoing-text.active,
+.completed-text.active {
+  font-weight: 700;
+  color: var(--Governor-Bay-600, #3246d2);
 }
 .project-child-completed-container {
   display: flex;
@@ -301,10 +318,12 @@
   justify-content: center;
   align-items: center;
 }
-.settings-svg,.help-svg,.logout-svg {
+.settings-svg,
+.help-svg,
+.logout-svg {
   width: 16px;
   height: 16px;
 }
-.settings-svg{
-    flex-shrink: 0;
+.settings-svg {
+  flex-shrink: 0;
 }

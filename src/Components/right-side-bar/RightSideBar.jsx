@@ -21,6 +21,8 @@ function RightSideBar() {
   const [selectedDate, setSelectedDate] = useState(null); // State to track selected date
   const datePickerRef = useRef(null);
   const columnRef = useRef(null); // Ref to the container div where datepicker is triggered
+  console.log(datePickerRef, "datePickerRef");
+  console.log(columnRef, "columnRef");
 
   // useEffect(() => {
   //   const handleClickOutside = (event) => {

@@ -2,8 +2,15 @@ import "./SideNav.css";
 import FoyrLogo from "../../assets/Project-logo/7fd5bcfb4aae4a79e66e5983b4f1b420799f9ba4.png";
 import UserProfile from "../../assets/userprofile-logo/bbd61d812eb2ebd40c0d2edc741a872d90baecc1 (1).png";
 import { useSelector } from "react-redux";
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 function Sidenav() {
+  const [isOpen, setIsOpen] = useState(false); // toggle state for dropdown
+  const [activeTab, setActiveTab] = useState(null);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   const tasks = useSelector((state) => state.user.data);
   return (
     <>
@@ -14,7 +21,7 @@ function Sidenav() {
             <div className="search-container">
               <div className="search-icon-wrapper">
                 <svg
-                className=".svg-icon "
+                  className=".svg-icon "
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="19"
@@ -36,7 +43,7 @@ function Sidenav() {
             <div className="dashboard-container">
               <div className="dashboard-icon-wrapper">
                 <svg
-                 className=".svg-icon "
+                  className=".svg-icon "
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="19"
@@ -61,11 +68,16 @@ function Sidenav() {
                   />
                 </svg>
               </div>
-              <div className="dashboard-text">Dashboard</div>
+              <Link to="/" className="dashboard-text">
+                Dashboard
+              </Link>
             </div>
 
             <div className="project-container">
-              <div className="project-icon-text-wrapper">
+              <div
+                className="project-icon-text-wrapper"
+                onClick={toggleDropdown}
+              >
                 <div className="project-items-container">
                   <div className="note-icon">
                     <svg
@@ -93,30 +105,83 @@ function Sidenav() {
                       />
                     </svg>
                   </div>
-                  <div className="project-text">Project</div>
+                  <div
+                  id="project-text"
+                    className={`${
+                      activeTab === "ongoing" || activeTab === "completed"
+                        ? "project-text-active"
+                        : ""
+                    }`}
+                  >
+                    Project
+                  </div>
                 </div>
                 <div className="project-arrow-left">
-                  <svg
-                    className="project-arrow-left-svg"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="17"
-                    viewBox="0 0 16 17"
-                    fill="none"
-                  >
-                    <path
-                      d="M2.21901 6.50047C2.21901 6.62714 2.26568 6.7538 2.36568 6.8538L6.71234 11.2005C7.41901 11.9071 8.57901 11.9071 9.28568 11.2005L13.6323 6.8538C13.8257 6.66047 13.8257 6.34047 13.6323 6.14714C13.439 5.9538 13.119 5.9538 12.9257 6.14714L8.57901 10.4938C8.25901 10.8138 7.73901 10.8138 7.41901 10.4938L3.07234 6.14714C2.87901 5.9538 2.55901 5.9538 2.36568 6.14714C2.27234 6.24714 2.21901 6.3738 2.21901 6.50047Z"
-                      fill="#6B7280"
-                    />
-                  </svg>
+                  {isOpen ? (
+                    <svg
+                      className="project-arrow-left-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="17"
+                      viewBox="0 0 16 17"
+                      fill="none"
+                    >
+                      <path
+                        d="M2.21901 6.50047C2.21901 6.62714 2.26568 6.7538 2.36568 6.8538L6.71234 11.2005C7.41901 11.9071 8.57901 11.9071 9.28568 11.2005L13.6323 6.8538C13.8257 6.66047 13.8257 6.34047 13.6323 6.14714C13.439 5.9538 13.119 5.9538 12.9257 6.14714L8.57901 10.4938C8.25901 10.8138 7.73901 10.8138 7.41901 10.4938L3.07234 6.14714C2.87901 5.9538 2.55901 5.9538 2.36568 6.14714C2.27234 6.24714 2.21901 6.3738 2.21901 6.50047Z"
+                        fill="#6B7280"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="17"
+                      viewBox="0 0 16 17"
+                      fill="none"
+                    >
+                      <path
+                        d="M2.21901 10.4995C2.21901 10.3729 2.26568 10.2462 2.36568 10.1462L6.71234 5.79953C7.41901 5.09286 8.57901 5.09286 9.28568 5.79953L13.6323 10.1462C13.8257 10.3395 13.8257 10.6595 13.6323 10.8529C13.439 11.0462 13.119 11.0462 12.9257 10.8529L8.57901 6.5062C8.25901 6.1862 7.73901 6.1862 7.41901 6.5062L3.07234 10.8529C2.87901 11.0462 2.55901 11.0462 2.36568 10.8529C2.27234 10.7529 2.21901 10.6262 2.21901 10.4995Z"
+                        fill="#111827"
+                      />
+                    </svg>
+                  )}
                 </div>
               </div>
-              <div className="project-child-ongoing-container">
-                <div className="ongoing-text">Ongoing</div>
-              </div>
-              <div className="project-child-completed-container">
-                <div className="completed-text">Completed</div>
-              </div>
+              {isOpen && (
+                <React.Fragment>
+                  <div
+                    className={`project-child-ongoing-container ${
+                      activeTab === "ongoing" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("ongoing")}
+                  >
+                    <Link
+                      to="/rightsidebar"
+                      className={`ongoing-text ${
+                        activeTab === "ongoing" ? "active" : ""
+                      }`}
+                    >
+                      Ongoing
+                    </Link>
+                  </div>
+
+                  <div
+                    className={`project-child-ongoing-container ${
+                      activeTab === "completed" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("completed")}
+                  >
+                    <Link
+                      to="/rightsidebar"
+                      className={`completed-text ${
+                        activeTab === "completed" ? "active" : ""
+                      }`}
+                    >
+                      Completed
+                    </Link>
+                  </div>
+                </React.Fragment>
+              )}
             </div>
 
             <div className="task-container">
@@ -170,7 +235,7 @@ function Sidenav() {
             <div className="templates-container">
               <div className="templates-icon-wrapper">
                 <svg
-                 className=".svg-icon "
+                  className=".svg-icon "
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
                   height="19"
@@ -205,8 +270,12 @@ function Sidenav() {
 
             <div className="user-name-info">
               <div className="user-name-wrapper">
-                <div className="title-text">{tasks?.[0]?.assignee?.[0]?.name || "No assignee"}</div>
-                <div className="supporting-text">{tasks?.[0]?.assignee?.[0]?.email || "No assignee"}</div>
+                <div className="title-text">
+                  {tasks?.[0]?.assignee?.[0]?.name || "No assignee"}
+                </div>
+                <div className="supporting-text">
+                  {tasks?.[0]?.assignee?.[0]?.email || "No assignee"}
+                </div>
               </div>
             </div>
           </div>
