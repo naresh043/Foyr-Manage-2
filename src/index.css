@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+
+:root {
+  /* Optional: Add any CSS variables here */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito" !important;
+}
+
+#root {
+  display: grid;
+  grid-template-areas: "aside main";
+  grid-template-columns: max-content auto;
+  height: 100vh;
+  /* overflow: hidden; */
+  /* width: 100%; */
+  height: 100vh;
+  background: var(--gray-50, #f9fafb);
+  /* display: inline-flex; */
+  /* padding-right: 24px; */
+  align-items: center;
+  /* gap: 24px; */
+}
