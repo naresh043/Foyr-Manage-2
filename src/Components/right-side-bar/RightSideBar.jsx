@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MultiSelectDropdown from "./dropdown-components/multi-select-dropdown/MultiSelectDropdown";
 import PrioritySelector from "./dropdown-components/priority-Selector/PrioritySelector";
+import AssigneesDropdown from "./dropdown-components/assignees-dropdown/AssigneesDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -57,7 +58,26 @@ function RightSideBar() {
     };
   }, []);
   console.log(tasks);
-  const dispatch = useDispatch();
+
+// assignees dropdown logic 
+
+const [showDropdown, setShowDropdown] = useState(false);
+const dropdownRef = useRef(null);
+
+// Close dropdown when clicking outside
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setShowDropdown(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => document.removeEventListener("mousedown", handleClickOutside);
+}, []);
+
 
   const statusOptions = [
     { label: "To-Do" },
@@ -657,7 +677,7 @@ function RightSideBar() {
                   <span className="assignees-text">ASSIGNEES</span>
                 </div>
                 <div className="task-divider"></div>
-                <div className="column4-table-cell2">
+                {/* <div className="column4-table-cell2">
                   <div className="column4-table-avatar-container">
                     <div className="column4-table-avatar-wrapper1">
                       <span className="ms-text">
@@ -670,7 +690,53 @@ function RightSideBar() {
                       <span className="pd-text">PD</span>
                     </div>
                   </div>
+                </div> */}
+                <div
+                  className="column4-table-cell2"
+                  style={{ position: "relative" }}
+                >
+                  <div className="column4-table-avatar-container">
+                    {/* NA clickable wrapper */}
+                    <div
+                      className="column4-table-avatar-wrapper1"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      style={{ cursor: "pointer" }} // Optional for user indication
+                    >
+                      <span className="ms-text">
+                        {tasks?.[0]?.assignee?.[0]?.name
+                          ?.slice(0, 2)
+                          .toUpperCase()}
+                      </span>
+                    </div>
+
+                    {/* PD clickable wrapper */}
+                    <div
+                      className="column4-table-avatar-wrapper2"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <span className="pd-text">PD</span>
+                    </div>
+                  </div>
+
+                  {/* Conditionally rendered dropdown overlay */}
+                  {showDropdown && (
+                    <div
+                      ref={dropdownRef}
+                      className="assignee-dropdown-wrapper"
+                      style={{
+                        position: "absolute", // So it overlays
+                        top: "100%", // Position below the avatar
+                        right: 0,
+                        zIndex: 9999, // Ensures it's above other content
+                      }}
+                    >
+                      {/* 👇 Dropdown component rendered here */}
+                      <AssigneesDropdown />
+                    </div>
+                  )}
                 </div>
+
                 <div className="column4-table-cell3">
                   <div className="column4-table-avatar-container">
                     <div className="column4-table-avatar-wrapper1">
