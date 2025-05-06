@@ -2,6 +2,7 @@ import "./RightSideBar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MultiSelectDropdown from "./multi-select-dropdown/MultiSelectDropdown";
+import PrioritySelector from "./priority-Selector/PrioritySelector";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -645,45 +646,10 @@ function RightSideBar() {
                   <span className="priority-text">PRIORITY</span>
                 </div>
                 <div className="task-divider"></div>
-                <div className="column3-table-cell2">
-                  <svg
-                    className="table-cell2-high-svg"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                  >
-                    <path
-                      d="M2.5 5.5L6 2L9.5 5.5M2.5 9.5L6 6L9.5 9.5"
-                      stroke="#EF4444"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span className="cell2-high-text">High</span>
-                </div>
+                <PrioritySelector/>
                 <div className="column2-table-cell3"></div>
                 <div className="task-divider"></div>
-                <div className="column3-table-cell3">
-                  <div className="low-priority">
-                    <svg
-                      className="low-priority-icon-svg"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="17"
-                      viewBox="0 0 16 17"
-                      fill="none"
-                    >
-                      <path
-                        d="M2.21901 6.50047C2.21901 6.62714 2.26568 6.7538 2.36568 6.8538L6.71234 11.2005C7.41901 11.9071 8.57901 11.9071 9.28568 11.2005L13.6323 6.8538C13.8257 6.66047 13.8257 6.34047 13.6323 6.14714C13.439 5.9538 13.119 5.9538 12.9257 6.14714L8.57901 10.4938C8.25901 10.8138 7.73901 10.8138 7.41901 10.4938L3.07234 6.14714C2.87901 5.9538 2.55901 5.9538 2.36568 6.14714C2.27234 6.24714 2.21901 6.3738 2.21901 6.50047Z"
-                        fill="#6B7280"
-                      />
-                    </svg>
-                  </div>
-                  <span className="low-priority-text">Low</span>
-                </div>
+                <PrioritySelector/>
                 <div className="task-divider"></div>
                 <div className="column3-table-cell5"></div>
                 <div className="task-divider"></div>

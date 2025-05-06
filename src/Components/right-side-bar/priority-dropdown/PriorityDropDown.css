@@ -1,0 +1,72 @@
+.priority-dropdown-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 100%; /* Ensure it is placed right below the parent element */
+    left: 0;
+    z-index: 1000; /* Make sure it's on top of other content */
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 170px; /* Ensure the dropdown takes up full width of its parent */
+}
+.priority-drop-down-item-container,
+.priority-drop-down-item2-container,
+.priority-drop-down-item3-container,
+.priority-drop-down-item4-container,
+.priority-drop-down-item5-container {
+  display: flex;
+  padding: 12px 16px;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+}
+.priority-drop-down-item-container {
+  border-bottom: 1px solid var(--gray-300, #d1d5db);
+}
+
+.none-item-text,
+.low-item-text,
+.medium-item-text,
+.high-item-text,
+.sos-item-text {
+  flex: 1 0 0;
+  font-family: Nunito;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.none-item-text {
+  color: var(--gray-500, #6b7280);
+}
+.low-item-text {
+  color: var(--light-blue-500, #0ea5e9);
+}
+.medium-item-text {
+  color: var(--orange-500, #f97316);
+}
+.high-item-text {
+  color: var(--red-500, #ef4444);
+}
+.sos-item-text{
+    color: var(--red-700, #B91C1C);
+}
+.priority-drop-down-item2-svg,
+.priority-drop-down-item3-svg,
+.priority-drop-down-item4-svg,
+.priority-drop-down-item5-svg,
+.priority-drop-down-item5-sos-svg {
+  width: 12px;
+  height: 12px;
+}
+.priority-drop-down-item5-svg-container {
+  display: flex;
+  width: 12px;
+  height: 12px;
+  justify-content: center;
+  align-items: center;
+}
+.priority-drop-down-item5-sos-svg {
+  flex-shrink: 0;
+}
