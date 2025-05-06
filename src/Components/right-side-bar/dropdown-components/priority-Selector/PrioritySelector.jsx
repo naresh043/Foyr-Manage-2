@@ -1,7 +1,7 @@
 // PrioritySelector.js
 import { useState, useRef, useEffect } from "react";
 import PriorityDropDown from "../priority-dropdown/PriorityDropDown";
-import "../RightSideBar.css";
+import "../../RightSideBar.css";
 
 function PrioritySelector() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -29,7 +29,7 @@ function PrioritySelector() {
 
   // Called by dropdown to update priority and close it
   const handlePrioritySelect = (value) => {
-    setPriority(value);  // Update the selected priority
+    setPriority(value); // Update the selected priority
     setShowDropdown(false); // Close the dropdown
   };
   return (

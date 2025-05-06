@@ -1,8 +1,8 @@
 import "./RightSideBar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import MultiSelectDropdown from "./multi-select-dropdown/MultiSelectDropdown";
-import PrioritySelector from "./priority-Selector/PrioritySelector";
+import MultiSelectDropdown from "./dropdown-components/multi-select-dropdown/MultiSelectDropdown";
+import PrioritySelector from "./dropdown-components/priority-Selector/PrioritySelector";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -635,8 +635,6 @@ function RightSideBar() {
                   </div>
                 </div>
 
-
-
                 <div className="task-divider"></div>
                 <div className="column2-table-cell5"></div>
                 <div className="task-divider"></div>
@@ -646,10 +644,10 @@ function RightSideBar() {
                   <span className="priority-text">PRIORITY</span>
                 </div>
                 <div className="task-divider"></div>
-                <PrioritySelector/>
+                <PrioritySelector />
                 <div className="column2-table-cell3"></div>
                 <div className="task-divider"></div>
-                <PrioritySelector/>
+                <PrioritySelector />
                 <div className="task-divider"></div>
                 <div className="column3-table-cell5"></div>
                 <div className="task-divider"></div>
