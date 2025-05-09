@@ -327,6 +327,12 @@
   align-items: center;
   gap: 8px;
   align-self: stretch;
+  border: 1px solid transparent; 
+}
+.tables-cell2:hover {
+  border-radius: 5px;
+  border: 1px solid var(--gray-400, #9ca3af);
+  background: var(--gray-100, #f3f4f6);
 }
 .tables-cell1 {
   padding: 12px;
@@ -547,6 +553,12 @@
   align-items: center;
   gap: 8px;
   align-self: stretch;
+  /* border: 1px solid transparent; */
+}
+.column2-table-cell2:hover {
+  border-radius: 5px;
+  border: 1px solid var(--gray-400, #9ca3af);
+  /* background: var(--gray-100, #f3f4f6); */
 }
 
 .column2-table-cell1 {

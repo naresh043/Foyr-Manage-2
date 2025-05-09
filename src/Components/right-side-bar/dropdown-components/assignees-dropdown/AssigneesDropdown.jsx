@@ -1,5 +1,24 @@
 import "./AssigneesDropdown.css";
-function AssigneesDropdown() {
+import InviteGuest from "../invite-guest/InviteGuest";
+import { useState,useEffect } from "react";
+function AssigneesDropdown({ onClose }) {
+  const handleItemClick = () => {
+    if (onClose) onClose();
+  };
+
+  const [showInviteGuest, setShowInviteGuest] = useState(false);
+
+  const handleOpen = () => setShowInviteGuest(true);
+  const handleClose = () => {
+    setShowInviteGuest(false);
+    console.log("close clicked in invite guest",showInviteGuest);
+  };
+
+  
+  // Debug change in state
+useEffect(() => {
+  console.log("showInviteGuest changed:", showInviteGuest);
+}, [showInviteGuest]);
   return (
     <div className="assignees-dropdown-container">
       <div className="assignees-dropdown-navbar-search-field">
@@ -20,7 +39,10 @@ function AssigneesDropdown() {
         </svg>
         <div className="assignees-dropdown-search-text">Search</div>
       </div>
-      <div className="assignees-dropdown-select-menu-item1-container">
+      <div
+        className="assignees-dropdown-select-menu-item1-container"
+        onClick={handleItemClick}
+      >
         <svg
           className="assignees-dropdown-select-menu-item1-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -51,11 +73,15 @@ function AssigneesDropdown() {
           />
         </svg>
         <div className="assignees-dropdown-select-menu-item1-text">Naresh</div>
+
         <div className="assignees-dropdown-select-menu-item1-invite-text">
           Invite Sent
         </div>
       </div>
-      <div className="assignees-dropdown-select-menu-item1-container">
+      <div
+        className="assignees-dropdown-select-menu-item1-container"
+        onClick={handleItemClick}
+      >
         <svg
           className="assignees-dropdown-select-menu-item1-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -87,30 +113,38 @@ function AssigneesDropdown() {
         </svg>
         <div className="assignees-dropdown-select-menu-item1-text">Prasad</div>
       </div>
-      <div className="assignees-dropdown-invite-guest-container">
-  <div className="assignees-dropdown-invite-guest-content">
-    <svg
-      className="assignees-dropdown-invite-guest-add-svg"
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="17"
-      viewBox="0 0 16 17"
-      fill="none"
-    >
-      <path
-        d="M12 9H4C3.72667 9 3.5 8.77333 3.5 8.5C3.5 8.22667 3.72667 8 4 8H12C12.2733 8 12.5 8.22667 12.5 8.5C12.5 8.77333 12.2733 9 12 9Z"
-        fill="#3246D2"
-      />
-      <path
-        d="M8 13C7.72667 13 7.5 12.7733 7.5 12.5V4.5C7.5 4.22667 7.72667 4 8 4C8.27333 4 8.5 4.22667 8.5 4.5V12.5C8.5 12.7733 8.27333 13 8 13Z"
-        fill="#3246D2"
-      />
-    </svg>
-    <div className="assignees-dropdown-invite-guest-text">
-      Invite a Guest
-    </div>
-  </div>
-</div>
+      <div
+        className="assignees-dropdown-invite-guest-container"
+        onClick={handleOpen}
+      >
+        <div className="assignees-dropdown-invite-guest-content">
+          <svg
+            className="assignees-dropdown-invite-guest-add-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="17"
+            viewBox="0 0 16 17"
+            fill="none"
+          >
+            <path
+              d="M12 9H4C3.72667 9 3.5 8.77333 3.5 8.5C3.5 8.22667 3.72667 8 4 8H12C12.2733 8 12.5 8.22667 12.5 8.5C12.5 8.77333 12.2733 9 12 9Z"
+              fill="#3246D2"
+            />
+            <path
+              d="M8 13C7.72667 13 7.5 12.7733 7.5 12.5V4.5C7.5 4.22667 7.72667 4 8 4C8.27333 4 8.5 4.22667 8.5 4.5V12.5C8.5 12.7733 8.27333 13 8 13Z"
+              fill="#3246D2"
+            />
+          </svg>
+          <div className="assignees-dropdown-invite-guest-text">
+            Invite a Guest
+          </div>
+        </div>
+      </div>
+        {showInviteGuest && (
+          <div className="overlay">
+            <InviteGuest onClose={handleClose} />
+          </div>
+        )}
 
       <div className="assignees-dropdown-select-menu-item1"></div>
     </div>

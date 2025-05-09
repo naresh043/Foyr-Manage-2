@@ -732,7 +732,7 @@ useEffect(() => {
                       }}
                     >
                       {/* 👇 Dropdown component rendered here */}
-                      <AssigneesDropdown />
+                      <AssigneesDropdown onClose={() => setShowDropdown(false)} />
                     </div>
                   )}
                 </div>
