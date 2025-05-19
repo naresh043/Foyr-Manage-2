@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const token = "k7SOSg9doEcsXInjSHhQeW4RpvzGHmoMdvs3K1R92yx";
+const token = "iwysBoLOQu3Cnsk1wwdrUC9arHof~3~pLAqFCZX3Rzc";
 
 // Async thunk to fetch task details
 export const fetchTasks = createAsyncThunk(
@@ -18,7 +18,8 @@ export const fetchTasks = createAsyncThunk(
 
       return response.data.data.tasks;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+      const err = error.response?.data?.message || error.message || 'Unknown error';
+      return thunkAPI.rejectWithValue(err); // send only string message
     }
   }
 );
@@ -43,7 +44,7 @@ const taskSlice = createSlice({
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload; // now a string
       });
   },
 });
