@@ -26,6 +26,11 @@ function RightSideBar() {
   console.log(datePickerRef, "datePickerRef");
   console.log(columnRef, "columnRef");
 
+  const [showSubtasks, setShowSubtasks] = useState(false);
+
+  const handleToggleSubtasks = () => {
+    setShowSubtasks((prev) => !prev);
+  };
   // useEffect(() => {
   //   const handleClickOutside = (event) => {
   //     if (
@@ -59,25 +64,21 @@ function RightSideBar() {
   }, []);
   console.log(tasks);
 
-// assignees dropdown logic 
+  // assignees dropdown logic
 
-const [showDropdown, setShowDropdown] = useState(false);
-const dropdownRef = useRef(null);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
 
-// Close dropdown when clicking outside
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target)
-    ) {
-      setShowDropdown(false);
-    }
-  };
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => document.removeEventListener("mousedown", handleClickOutside);
-}, []);
-
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const statusOptions = [
     { label: "To-Do" },
@@ -470,13 +471,33 @@ useEffect(() => {
                     </div>
                     {task.subtasks.length > 0 && (
                       <div className="table-cell3">
-                        <div className="show-all-task-container">
-                          <div className="show-all-task-text">
-                            Show all {task.subtasks.length} subtasks
+                        {/* Render Subtasks if visible */}
+                        {showSubtasks && (
+                          <div className="subtask-list">
+                            {task.subtasks.map((subtask) => (
+                              <div key={subtask._id} className="subtask-item">
+                                <input type="checkbox" name="" id="" />
+                                {subtask.title}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        <div
+                          className="show-all-task-container"
+                          onClick={handleToggleSubtasks}
+                        >
+                          <div
+                            className="show-all-task-text"
+                            style={{ cursor: "pointer" }}
+                          >
+                            {showSubtasks
+                              ? "Hide subtasks"
+                              : `Show all ${task.subtasks.length} subtasks`}
                           </div>
                         </div>
                       </div>
                     )}
+
                     <div className="show-all-task-divider"></div>
                   </React.Fragment>
                 ))}
@@ -732,7 +753,9 @@ useEffect(() => {
                       }}
                     >
                       {/* 👇 Dropdown component rendered here */}
-                      <AssigneesDropdown onClose={() => setShowDropdown(false)} />
+                      <AssigneesDropdown
+                        onClose={() => setShowDropdown(false)}
+                      />
                     </div>
                   )}
                 </div>

@@ -59,8 +59,12 @@
   white-space: normal; /* Allow text to wrap */
   word-break: break-word; /* Break long words if needed */
 }
+.dropdown-item:hover{
+  background-color: var(--gray-100, #f3f4f6);
+  cursor: pointer;
+}
 .dropdown-icon-label {
-  display: flex;
+  display: flex;      
   align-items: center;
   flex-wrap: wrap; /* Allow icon and text to wrap if needed */
   width: 100%;
