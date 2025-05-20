@@ -42,6 +42,11 @@
   padding: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
+ 
+  min-width: 100%;        /* Matches trigger width */
+  width: max-content;     /* Expands to fit content */
+  max-width: 300px;       /* Optional cap for very long content */
+  white-space: nowrap;
 }
 
 .dropdown-item {
@@ -50,10 +55,15 @@
   gap: 6px;
   padding: 4px 0;
   font-size: 14px;
+  width: 100%; /* Ensure label stretches full width */
+  white-space: normal; /* Allow text to wrap */
+  word-break: break-word; /* Break long words if needed */
 }
 .dropdown-icon-label {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* Allow icon and text to wrap if needed */
+  width: 100%;
   gap: 6px;
 }
 
@@ -61,7 +71,6 @@
   display: flex;
   width: 14px;
   height: 14px;
-  /* transform: rotate(-90deg); */
   justify-content: center;
   align-items: center;
 }
